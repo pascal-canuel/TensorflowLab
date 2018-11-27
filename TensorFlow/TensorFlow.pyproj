@@ -34,6 +34,12 @@
     <Compile Include="Lab3.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Lab4.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Lab5.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="NotesDeCours.py">
       <SubType>Code</SubType>
     </Compile>

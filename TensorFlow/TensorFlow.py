@@ -20,7 +20,9 @@ import NotesDeCours as NC
 
 #import Lab1
 #import Lab2
-import Lab3
+#import Lab3
+#import Lab4
+import Lab5
 
 #########################################################
 #
