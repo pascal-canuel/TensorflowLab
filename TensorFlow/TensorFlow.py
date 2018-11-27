@@ -19,7 +19,8 @@ import NotesDeCours as NC
 #import TensorBoard as TB
 
 #import Lab1
-import Lab2
+#import Lab2
+import Lab3
 
 #########################################################
 #

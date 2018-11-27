@@ -1,6 +1,7 @@
 
 # https://www.tensorflow.org/tutorials/keras/basic_text_classification
 
+from __future__ import absolute_import, division, print_function
 import tensorflow as tf
 from tensorflow import keras
 #from keras.models import *
@@ -67,6 +68,74 @@ model.add(keras.layers.Dense(1, activation=tf.nn.sigmoid))
 
 model.summary()
 
-# 
+# hidden unit
+'''
+***
+If a model has more hidden units (a higher-dimensional representation space), and/or more layers, 
+then the network can learn more complex representations. However, it makes the network more computationally 
+expensive and may lead to learning unwanted patterns—patterns that improve performance on training data but not on the test data. 
+This is called overfitting, and we'll explore it later.
+***
+'''
 
+model.compile(optimizer=tf.train.AdamOptimizer(),
+              loss='binary_crossentropy', # its a binary classification measuring the distance between the ground-truth and the predictions
+              metrics=['accuracy'])
 
+x_val = train_data[:10000]
+partial_x_train = train_data[10000:]
+
+y_val = train_labels[:10000]
+partial_y_train = train_labels[10000:]
+
+history = model.fit(partial_x_train,
+                    partial_y_train,
+                    epochs=40,
+                    batch_size=512,
+                    validation_data=(x_val, y_val),
+                    verbose=1)
+
+results = model.evaluate(test_data, test_labels)
+print(results)
+
+history_dict = history.history
+history_dict.keys()
+dict_keys(['val_acc', 'acc', 'val_loss', 'loss'])
+
+epochs = range(1, len(acc) + 1)
+
+# "bo" is for "blue dot"
+plt.plot(epochs, loss, 'bo', label='Training loss')
+# b is for "solid blue line"
+plt.plot(epochs, val_loss, 'b', label='Validation loss')
+plt.title('Training and validation loss')
+plt.xlabel('Epochs')
+plt.ylabel('Loss')
+plt.legend()
+
+plt.show()
+
+plt.clf()   # clear figure
+acc_values = history_dict['acc']
+val_acc_values = history_dict['val_acc']
+
+plt.plot(epochs, acc, 'bo', label='Training acc')
+plt.plot(epochs, val_acc, 'b', label='Validation acc')
+plt.title('Training and validation accuracy')
+plt.xlabel('Epochs')
+plt.ylabel('Accuracy')
+plt.legend()
+
+plt.show()
+
+'''
+***
+Notice the training loss decreases with each epoch and the training accuracy increases with each epoch. 
+This is expected when using a gradient descent optimization—it should minimize the desired quantity on every iteration.
+This isn't the case for the validation loss and accuracy—they seem to peak after about twenty epochs. 
+This is an example of overfitting: the model performs better on the training data than it does on data it has never seen before. 
+After this point, the model over-optimizes and learns representations specific to the training data that do not generalize to test data.
+***
+'''
+
+# overfitting
