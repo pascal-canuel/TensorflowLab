@@ -12,6 +12,7 @@
     <OutputPath>.</OutputPath>
     <Name>TensorFlow</Name>
     <RootNamespace>TensorFlow</RootNamespace>
+    <InterpreterId>CondaEnv|CondaEnv|tf-gpu</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,6 +23,10 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CatDogClassifier.py" />
+    <Compile Include="GAN.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Helper.py">
       <SubType>Code</SubType>
     </Compile>
@@ -44,6 +49,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TensorFlow.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="CondaEnv|CondaEnv|tf-gpu" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -22,7 +22,9 @@ import NotesDeCours as NC
 #import Lab2
 #import Lab3
 #import Lab4
-import Lab5
+#import Lab5
+import CatDogClassifier
+import GAN
 
 #########################################################
 #
